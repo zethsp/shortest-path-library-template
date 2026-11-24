@@ -26,7 +26,23 @@ export function shortestPathBFS(s,t,g) {
 
     // Implementér resten af koden herunder
     // ...
-    
+
+    visitedSet.add(g.key(s))
+    q.enqueue(s)
+    while (!q.isEmpty()) {
+        let n = q.dequeue()
+        if (g.identicalNode(n, t)){
+            return path.reverse();
+        }
+        for (const m of g.neighbors(n)){
+            if (visitedSet.has(g.key(m))){
+                q.enqueue(m);
+            }
+            visitedSet.add(m);
+            prevMap.set(g.key(m),n)
+        }
+    }
+        
     return path;
 }  
 
