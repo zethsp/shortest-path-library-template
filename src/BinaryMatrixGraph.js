@@ -36,8 +36,17 @@ export class BinaryMatrixGraph {
      * @returns {number[][]} - an array of nodes in the form of two-element arrays
      */
     neighbors(n) {
-        // Implementér denne metode
-        // ...
+        const [row, col] = n;
+        const candidates = [
+            [row - 1, col],
+            [row + 1, col],
+            [row, col - 1],
+            [row, col + 1],
+        ];
+
+        return candidates.filter(candidate =>
+            this.inBounds(candidate) && this.valueAt(candidate) === 0
+        );
     }
 
     identicalNodes(n,m) {
